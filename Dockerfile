@@ -7,21 +7,36 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -y nginx \
     php5-fpm \
-    php5-json \
-    php5-cli \
     php5-mysql \
+    php5-mcrypt \
+    php5-gd \
+    php5-memcached \
     php5-curl \
+    php-pear \
+    php5-apcu \
+    php5-cli \
+    php5-curl \
+    php5-mcrypt \
+    php5-sqlite \
+    php5-intl \
+    php5-tidy \
+    php5-imap \
+    php5-imagick \
+    php5-json \
+    php5-redis \
+    php5-imagick \
     unzip \
     git \
     supervisor \
-    nodejs \
-    npm \
     curl
 
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
-COPY parameters.yml /tmp/parameters.yml
+RUN git clone -b master https://github.com/WellCommerce/WellCommerce.git /var/www/app
+RUN composer install -n --ignore-platform-reqs -o --no-scripts -d /var/www/app
+
+COPY parameters.yml /var/www/app/app/config/parameters.yml
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
