@@ -21,6 +21,7 @@ RUN apt-get update && \
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
+COPY parameters.yml /tmp/parameters.yml
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 

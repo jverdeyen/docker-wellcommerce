@@ -1,11 +1,7 @@
 #!/bin/bash
 git clone -b master https://github.com/WellCommerce/WellCommerce.git /var/www/app
 
-cp /var/www/app/app/config/parameters.yml.dist /var/www/app/app/config/parameters.yml
-sed -i "s|127.0.0.1|mysql|g" /var/www/app/app/config/parameters.yml
-sed -i "s|root|admin|g" /var/www/app/app/config/parameters.yml
-sed -i "s|database_password: null|database_password: admin|g" /var/www/app/app/config/parameters.yml
-# sed -i "s|%database_password%|admin|g" app/config/config.yml
+cp /tmp/parameters.yml /var/www/app/app/config/parameters.yml
 
 composer install --prefer-source --no-interaction -d /var/www/app/
 php /var/www/app/app/console doctrine:schema:create --env=prod
