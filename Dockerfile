@@ -47,8 +47,6 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
 ADD init.sh /init.sh
 
-VOLUME ["/var/www/app"]
-
 EXPOSE 80
 
 CMD ["/init.sh"]
