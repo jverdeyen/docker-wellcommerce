@@ -1,0 +1,15 @@
+web:
+    build: ./
+    ports:
+        - 80
+    links:
+        - mysql
+    volumes_from:
+        - mysql
+
+mysql:
+    image: tutum/mysql
+    environment:
+        MYSQL_USER: admin
+        MYSQL_PASS: admin
+        ON_CREATE_DB: wellcommerce
