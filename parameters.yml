@@ -3,8 +3,8 @@ parameters:
     database_host:     mysql
     database_port:     ~
     database_name:     wellcommerce
-    database_user:     root
-    database_password: ~
+    database_user:     admin
+    database_password: admin
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
