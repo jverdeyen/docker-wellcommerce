@@ -33,12 +33,10 @@ RUN apt-get update && \
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
-RUN git clone -b master https://github.com/WellCommerce/WellCommerce.git /var/www/app
-WORKDIR /var/www/app
-RUN composer install -n --ignore-platform-reqs -o --no-scripts
-RUN php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
-
-COPY parameters.yml /var/www/app/app/config/parameters.yml
+RUN git clone -b development https://github.com/WellCommerce/WellCommerce.git /var/www/wellcommerce
+WORKDIR /var/www/wellcommerce
+COPY parameters.yml /var/www/wellcommerce/app/config/parameters.yml
+RUN composer install --prefer-source --no-interaction --ignore-platform-reqs --no-scripts
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
@@ -49,6 +47,6 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
 ADD init.sh /init.sh
 
-EXPOSE 80
+EXPOSE 80 3306
 
 CMD ["/init.sh"]
