@@ -19,6 +19,4 @@ boot2docker ip
 
 # Requirements
 
-* Docker
-* Docker Compose
-* VirtualBox/boot2docker (on Mac OS X)
+* [Docker ToolBox](https://www.docker.com/docker-toolbox)
