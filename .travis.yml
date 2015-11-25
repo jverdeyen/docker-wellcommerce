@@ -14,3 +14,4 @@ before_install:
 
 script:
   - docker-compose build web
+  - docker-compose up
