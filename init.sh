@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir /var/www/wellcommerce/web/js
-chmod -R 0777 /var/www/wellcommerce
+chmod -R 0755 /var/www/wellcommerce
 php /var/www/wellcommerce/app/console assets:install --env=prod
 php /var/www/wellcommerce/app/console bazinga:js-translation:dump --env=prod
 php /var/www/wellcommerce/app/console fos:js-routing:dump --env=prod
