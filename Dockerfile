@@ -39,6 +39,7 @@ WORKDIR /var/www/wellcommerce
 
 COPY parameters.yml /var/www/wellcommerce/app/config/parameters.yml
 RUN composer install --prefer-source --no-interaction --ignore-platform-reqs --no-scripts
+RUN php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
@@ -46,8 +47,6 @@ RUN sed -e 's/;daemonize = yes/daemonize = no/' -i /etc/php5/fpm/php-fpm.conf
 RUN sed -e 's/;listen\.owner/listen.owner/' -i /etc/php5/fpm/pool.d/www.conf
 RUN sed -e 's/;listen\.group/listen.group/' -i /etc/php5/fpm/pool.d/www.conf
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-
-RUN composer build-bootstrap
 
 ADD init.sh /init.sh
 
