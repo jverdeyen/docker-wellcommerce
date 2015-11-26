@@ -42,10 +42,6 @@ RUN composer install --no-interaction --ignore-platform-reqs --no-scripts
 RUN composer dump-autoload -o
 RUN composer build-bootstrap
 
-RUN cat /var/www/wellcommerce/vendor/composer/autoload_namespaces.php
-RUN cat /var/www/wellcommerce/vendor/composer/autoload_psr4.php
-RUN find . -name '*ArgvInput*'
-
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
