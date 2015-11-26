@@ -1,6 +1,7 @@
 #!/bin/bash
 mkdir /var/www/wellcommerce/web/js
 chmod -R 0755 /var/www/wellcommerce
+find /var/www/wellcommerce/ -name '*ArgvInput*'
 php /var/www/wellcommerce/app/console assets:install --env=prod
 php /var/www/wellcommerce/app/console bazinga:js-translation:dump --env=prod
 php /var/www/wellcommerce/app/console fos:js-routing:dump --env=prod
