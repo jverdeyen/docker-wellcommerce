@@ -38,7 +38,7 @@ RUN git clone -b development https://github.com/WellCommerce/WellCommerce.git /v
 WORKDIR /var/www/wellcommerce
 
 COPY parameters.yml /var/www/wellcommerce/app/config/parameters.yml
-RUN composer install --prefer-source --no-interaction --ignore-platform-reqs --no-scripts
+RUN composer install --no-interaction --ignore-platform-reqs --no-scripts
 RUN composer dump-autoload -o
 RUN composer build-bootstrap
 
