@@ -38,8 +38,10 @@ RUN git clone -b development https://github.com/WellCommerce/WellCommerce.git /v
 WORKDIR /var/www/wellcommerce
 
 COPY parameters.yml /var/www/wellcommerce/app/config/parameters.yml
-RUN composer install --prefer-source --no-interaction --ignore-platform-reqs --no-scripts
-RUN php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
+RUN composer install --no-interaction --ignore-platform-reqs --no-scripts
+RUN composer dump-autoload -o
+RUN composer build-bootstrap
+
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
