@@ -42,7 +42,7 @@ RUN composer install --prefer-source --no-interaction --ignore-platform-reqs --n
 RUN composer dump-autoload -o
 RUN cat /var/www/wellcommerce/vendor/composer/autoload_namespaces.php
 RUN cat /var/www/wellcommerce/vendor/composer/autoload_psr4.php
-RUN php ./vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php
+RUN composer build-bootstrap
 COPY vhost.conf /etc/nginx/sites-enabled/default
 COPY supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
